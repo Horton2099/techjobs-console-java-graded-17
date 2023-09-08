@@ -42,7 +42,9 @@ public class JobData {
             }
         }
 
-        return values;
+        ArrayList<String> aValues = new ArrayList<>(values);
+
+        return aValues;
     }
 
     public static ArrayList<HashMap<String, String>> findAll() {
@@ -99,9 +101,10 @@ public class JobData {
         for (HashMap<String, String> job : allJobs) {
 
             for (String key : job.keySet()) {
-                String aValue = job.get(key);
-                if (aValue.equalsIgnoreCase(value)) {
+                String aValue = job.get(key).toLowerCase();
+                if (aValue.contains(value.toLowerCase())) {
                     jobs.add(job);
+                    //Prevent Repeats here
                     break;
                 }
             }
